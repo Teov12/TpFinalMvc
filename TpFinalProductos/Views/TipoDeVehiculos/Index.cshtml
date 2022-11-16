@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TpFinalProductos.Models.TipoDeVehiculo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Tipos de vehiculos</h1>
+
+<p>
+    <button class="btn btn-success"><a style="color: white" asp-action="Create">Crear nuevo tipo</a></button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.vehiculo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.vehiculo)
+            </td>
+            <td>
+                    <button type="button" class="btn btn-primary"><a style="color:white" asp-action="Edit" asp-route-id="@item.Id">Editar</a></button>
+                    <button type="button" class="btn btn-secondary ms-1"><a style="color:white" asp-action="Details" asp-route-id="@item.Id">Detalles</a></button>
+                    <button type="button" class="btn btn-danger"><a style="color:white" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a></button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<partial name="paginador" for="@ViewData["paginador"]" />

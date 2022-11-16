@@ -1,0 +1,85 @@
+﻿@*@model IEnumerable<TpFinalProductos.Models.Vehiculo>*@
+@model TpFinalProductos.ModelsView.VehiculosViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Vehiculos</h1>
+
+<p>
+    <button class="btn btn-success"><a style="color: white" asp-action="Create">Crear nuevo vehiculo</a></button>
+</p>
+
+<form asp-action="Index" method="get">
+    <p>
+        Nombre: <input type="text" name="busquedaNombre" value="@Model.busquedaNombre" />
+        Marca: <input type="text" name="busquedaMarca" value="@Model.busquedaMarca" />
+        Categoria: <input type="text" name="busquedaCategoria" value="@Model.busquedaCategoria" />
+
+        <input type="submit" value="Filtrar"/>
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaVehiculos[0].nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaVehiculos[0].precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaVehiculos[0].resumen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaVehiculos[0].TipoVehiculo.vehiculo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaVehiculos[0].Marca.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaVehiculos[0].Categoria.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaVehiculos[0].foto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ListaVehiculos) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.resumen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoVehiculo.vehiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.descripcion)
+            </td>
+            <td>
+                <img src="~/images/vehiculos/@item.foto" class="img-thumbnail" asp-append-version="true" style="height: 40px" />
+            </td>
+            <td>
+                    <button type="button" class="btn btn-primary"><a style="color:white" asp-action="Edit" asp-route-id="@item.Id">Editar</a></button>
+                    <button type="button" class="btn btn-secondary ms-1"><a style="color:white" asp-action="Details" asp-route-id="@item.Id">Detalles</a></button>
+                    <button type="button" class="btn btn-danger"><a style="color:white" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a></button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<partial name="paginador" for="@Model.paginador" />

@@ -1,0 +1,70 @@
+﻿@model TpFinalProductos.Models.Vehiculo
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar</h1>
+
+<h4>Vehiculo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="tipoDeVehiculoId" class="control-label"></label>
+                <select asp-for="tipoDeVehiculoId" class="form-control" asp-items="ViewBag.tipoDeVehiculoId"></select>
+                <span asp-validation-for="tipoDeVehiculoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="marcaId" class="control-label"></label>
+                <select asp-for="marcaId" class="form-control" asp-items="ViewBag.marcaId"></select>
+                <span asp-validation-for="marcaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombre" class="control-label"></label>
+                <input asp-for="nombre" class="form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="precio" class="control-label"></label>
+                <input asp-for="precio" class="form-control" />
+                <span asp-validation-for="precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="categoriaId" class="control-label"></label>
+                <select asp-for="categoriaId" class="form-control" asp-items="ViewBag.categoriaId"></select>
+                <span asp-validation-for="categoriaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="resumen" class="control-label"></label>
+                <input asp-for="resumen" class="form-control" />
+                <span asp-validation-for="resumen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                
+                    <img src="~/images/vehiculos/@Model.foto" id="imagen" class="img-thumbnail" 
+                     style="max-width:50px"; 
+                     display=@(!string.IsNullOrEmpty(@Model.foto)? "block" : "none") asp-append-version="true" /> 
+                     
+                <label asp-for="foto" class="control-label">Seleccion Fotografia</label>
+                <input asp-for="foto" class="control-control" type="file" id="seleccionImg" accept="image/*" />
+                <span asp-validation-for="foto" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="foto" />
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <button class="btn btn-secondary"><a style="color:white" asp-action="Index">Volver a la lista</a></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<br />
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+    <script src="~/js//preview.js"></script>

@@ -1,0 +1,60 @@
+﻿@model TpFinalProductos.Models.Vehiculo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>Vehiculo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.resumen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.resumen)
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoVehiculo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TipoVehiculo.vehiculo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Marca.Nombre)
+        </dd>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Categoria)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Categoria.descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.foto)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="~/images/vehiculos/@Model.foto" class="img-thumbnail" asp-append-version="true" style="height: 50px" />
+        </dd>
+    </dl>
+</div>
+<div>
+    <button class="btn btn-primary"><a style="color:white" asp-action="Edit" asp-route-id="@Model.Id">Editar</a></button>
+    <button class="btn btn-secondary"><a style="color:white" asp-action="Index">Volver a la lista</a></button>
+</div>
